@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import axios from 'axios';
+
+const LoginScreen = ({ navigation }) => {
+  const [loginId, setLoginId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    // Replace this with your backend login logic
+    if (loginId === 'user123' && password === 'password123') {
+      navigation.navigate('验证');  // Navigate to verification
+    } else {
+      alert('无效的登录凭证！');  // Invalid login credentials
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>我的第一银行</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="登录ID"
+        value={loginId}
+        onChangeText={setLoginId}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="密码"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+      <Button title="登录" onPress={handleLogin} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    width: '100%',
+    padding: 10,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+});
+
+export default LoginScreen;
