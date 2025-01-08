@@ -1,0 +1,65 @@
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+
+const TransactionsScreen = () => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: '我的银行详情', value: 'bank_details' },
+    { label: '我的账单', value: 'statement' },
+    { label: '我的交易记录', value: 'transactions' },
+    { label: '我的个人信息', value: 'personal_details' },
+    { label: '密码重置', value: 'reset_password' },
+  ]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>银行交易记录</Text>
+      
+      {/* Dropdown menu for additional options */}
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+        containerStyle={{ width: '80%' }}
+        style={{ backgroundColor: '#fafafa' }}
+        dropDownStyle={{ backgroundColor: '#fafafa' }}
+      />
+
+      {value === 'transactions' && (
+        <View>
+          <Text>最近交易记录:</Text>
+          <Text>1. ¥100 - 支付给XYZ</Text>
+          <Text>2. ¥50 - 咖啡店消费</Text>
+          <Text>3. ¥2000 - 在线购物</Text>
+        </View>
+      )}
+      {value === 'bank_details' && (
+        <View>
+          <Text>账户号码: 123-456-789</Text>
+          <Text>账户余额: ¥10,000</Text>
+        </View>
+      )}
+      {/* Add other conditions for other menu options */}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+});
+
+export default TransactionsScreen;
