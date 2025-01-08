@@ -1,0 +1,22 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from './src/screens/LoginScreen';
+import VerificationScreen from './src/screens/VerificationScreen';
+import BankDetailsScreen from './src/screens/BankDetailsScreen';
+import TransactionsScreen from './src/screens/TransactionsScreen';
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="登录">
+        <Stack.Screen name="登录" component={LoginScreen} />
+        <Stack.Screen name="验证" component={VerificationScreen} />
+        <Stack.Screen name="银行详情" component={BankDetailsScreen} />
+        <Stack.Screen name="交易记录" component={TransactionsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
